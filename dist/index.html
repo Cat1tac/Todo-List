@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/style.css">
+    <script src="main.js" defer></script>
+    <title>Todo List</title>
+</head>
+<body>
+    <div class="formContainer">
+        <form action="todo-list-form" method="post">
+            <div>
+                <label for="title"></label>
+                <input type="text" id="title" name="task_title" placeholder="Title"/><br>
+                <label for="description"></label>
+                <textarea id="description" name="task_description" placeholder="Description"></textarea>
+            </div>
+            
+            <div>
+                
+            </div>
+            <div>
+                <label for="due">
+                    Due Date:
+                    <input type="date" id="due" name="due_date"/>
+                </label>
+                
+                <input type="button" value="CheckList Item">
+
+                <div>
+                    <label for="priority">
+                        Priority:
+                        <input type="checkbox" id="priority" name="priorityBox" value="priority" required />
+                    </label>
+                    
+                    
+                </div>
+                <!--
+                    <label for="checklist">
+                        Add checklist box:
+                        <input type="button" id="checklist" name="check">
+                    </label>
+                -->
+                
+            </div>
+            
+        </form>
+    </div>
+    <div class="container">
+        <header>
+            <h3>To-Do List</h3>
+        </header>
+        <div class="sidebar">
+            <div class="addNewTask">New Task <span>+</span></div>
+            <ul>
+                <li><div>All Tasks</div></li>
+                <li><div>Today</div></li>
+                <li><div>Tomorrow</div></li>
+                <li><div>Next Week</div></li>
+                <li><div>Someday</div></li>
+                <li><div>No Date</div></li>
+            </ul>
+        </div>
+    
+        <div class="todo-items">
+            <div class="item">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
