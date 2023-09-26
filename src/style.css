@@ -10,7 +10,7 @@ body{
 }
 .container {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 250px 4fr;
 }
 
 header {
@@ -39,7 +39,14 @@ header > h3 {
     right: 0;
     margin-left: auto;
     margin-right: auto;
+}
 
+.notVisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
 }
 
 form[action="todo-list-form"] {
@@ -54,7 +61,8 @@ input[id="title"] {
 }
 
 textarea[id="description"],
-input[id="title"] {
+input[id="title"],
+select {
     width: 170px;
     border-radius: 10px;
     padding-left: 5px;
@@ -65,12 +73,15 @@ input[id="title"] {
     border: 1px solid white;
     border-radius: 10px;
     padding: 10px;
+    padding-left: 20px;
     margin: 5px;
     display: flex;
     flex-direction: column;
     gap: 30px;
     font-weight: bold;
     font-size: 1.2em;
+    height: 100%;
+    width: 191px;
 
 }
 
@@ -85,9 +96,13 @@ input[id="title"] {
 }
 
 .sidebar > ul > li {
-    margin-bottom: 30px;
-    cursor: pointer;
+    margin-bottom: 25px;
+    color: rgb(179, 179, 179)
+}
 
+.sidebar > ul > li:hover {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
 }
 
 .sidebar > div > span {
@@ -96,3 +111,52 @@ input[id="title"] {
     padding: 4px 8px 4px 8px;
 }
 
+.todoItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    margin: 5px;
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: fit-content;
+    width: 300px;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.topItemArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.topItemArea > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.topItemArea > div > h5 {
+    font-size: 1.5em;
+}
+
+.checklistItemDisplay {
+    width: 100%;
+    padding-left: 50px;
+}
+
+.bottomItemArea > button {
+    border-radius: 20px;
+    width: 130px;
+    height: 35px;
+}
