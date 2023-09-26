@@ -16,7 +16,7 @@
                 <label for="description"></label>
                 <textarea id="description" name="task_description" placeholder="Description"></textarea>
                 <label for="category"></label>
-                <select name="category" id="categories" placeholder="categories"></select>
+                <select name="categories" id="category" placeholder="categories"></select>
             </div>
 
             <div>
@@ -24,13 +24,11 @@
                     Due Date:
                     <input type="date" id="due" name="due_date"/>
                 </label>
-                
-                <input type="button" value="Create checklist Item">
 
                 <div>
                     <label for="priority">
                         Priority:
-                        <input type="checkbox" id="priority" name="priorityBox" value="priority" required />
+                        <input type="checkbox" id="priority" name="priorityBox" unchecked />
                     </label>
                     
                     
@@ -41,7 +39,7 @@
                         <input type="button" id="checklist" name="check">
                     </label>
                 -->
-                
+                <input type="submit" value="Create Task">
             </div>
             
         </form>
@@ -76,6 +74,9 @@
                         <input type="checkbox" id="checklist" name="check" unchecked />
                         :Lorem
                     </label>
+                </div>
+                <div class="addNewChecklistItem">
+                    <button>Add Item</button>
                 </div>
                 <div class="bottomItemArea">
                     <button>Complete</button>
