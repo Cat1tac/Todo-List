@@ -8,25 +8,24 @@
     <title>Todo List</title>
 </head>
 <body>
-    <div class="formContainer">
+    <div class="formContainer notVisible">
         <form action="todo-list-form" method="post">
             <div>
                 <label for="title"></label>
                 <input type="text" id="title" name="task_title" placeholder="Title"/><br>
                 <label for="description"></label>
                 <textarea id="description" name="task_description" placeholder="Description"></textarea>
+                <label for="category"></label>
+                <select name="category" id="categories" placeholder="categories"></select>
             </div>
-            
-            <div>
-                
-            </div>
+
             <div>
                 <label for="due">
                     Due Date:
                     <input type="date" id="due" name="due_date"/>
                 </label>
                 
-                <input type="button" value="CheckList Item">
+                <input type="button" value="Create checklist Item">
 
                 <div>
                     <label for="priority">
@@ -54,18 +53,33 @@
         <div class="sidebar">
             <div class="addNewTask">New Task <span>+</span></div>
             <ul>
-                <li><div>All Tasks</div></li>
-                <li><div>Today</div></li>
-                <li><div>Tomorrow</div></li>
-                <li><div>Next Week</div></li>
-                <li><div>Someday</div></li>
-                <li><div>No Date</div></li>
+                <li>All Tasks</li>
+                <li>Today</li>
+                <li>Tomorrow</li>
+                <li>Someday</li>
+                <li>No Date</li>
             </ul>
         </div>
     
-        <div class="todo-items">
+        <div class="todoItems">
             <div class="item">
-                
+                <div class="topItemArea">
+                    <h5>Category</h5>
+                    <div>
+                        <h5>Title</h5>
+                        <h6>Due Date</h6>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores vitae magni excepturi atque quae.</p>
+                </div>
+                <div class="checklistItemDisplay">
+                    <label for="checklist">
+                        <input type="checkbox" id="checklist" name="check" unchecked />
+                        :Lorem
+                    </label>
+                </div>
+                <div class="bottomItemArea">
+                    <button>Complete</button>
+                </div>
             </div>
         </div>
     </div>
