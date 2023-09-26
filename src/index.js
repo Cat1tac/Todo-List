@@ -1,4 +1,6 @@
 import './style.css';
+import Card from "./card";
+import displayCard from "./dom";
 
 const newTask = document.querySelector(".addNewTask");
 const form = document.querySelector("div.formContainer");
@@ -12,4 +14,11 @@ newTask.addEventListener('click', ()=> {
         form.classList.remove('visible');
         form.classList.add('notVisible');
     }
+});
+
+const formSubmit = document.querySelector('input[type="submit"]');
+
+formSubmit.addEventListener('click', function(event) {
+    event.preventDefault();
+
 });

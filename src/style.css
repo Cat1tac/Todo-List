@@ -131,6 +131,10 @@ select {
 
 }
 
+.priorityChecked {
+    background-color: black;
+}
+
 .topItemArea {
     display: flex;
     flex-direction: column;
@@ -153,6 +157,15 @@ select {
 .checklistItemDisplay {
     width: 100%;
     padding-left: 50px;
+}
+
+.addNewChecklistItem {
+    width: 100%;
+    text-align: right;
+}
+
+.addNewChecklistItem > button {
+    width: 70px;
 }
 
 .bottomItemArea > button {
