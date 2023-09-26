@@ -35,7 +35,6 @@ export function cardInfo() {
     for(let i = cardArray.length; i < cardArray.length + 1; i++){
         cards[i] = new Card(cardTitle, cardDate, cardCategory, cardDescription);
         displayCard(i, cardTitle, cardDate, cardCategory, cardDescription);
-        console.log("yo");
     }
 
     cardArray.push(cards[cards.length - 1]);

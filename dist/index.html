@@ -50,7 +50,16 @@
         </header>
         <div class="sidebar">
             <div class="addNewTask">New Task <span>+</span></div>
-            <div class="addNewCategory">New Category <span>+</span></div>
+            <div class="addNewCategory">New Category <span>+</span>
+            </div>
+            <div class="formCategory notVisible">
+                <form action="addCategory" method="post" >
+                    <label for="addcategory">
+                        <input type="text" id="addcategory" name="Category" placeholder="Add Category"/><br>
+                    </label>
+                </form>
+            </div>
+            
             <ul>
                 <li>All Tasks</li>
                 <li>Today</li>

@@ -5,6 +5,14 @@
     margin: 0;
 }
 
+.notVisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
 body{
     background-color: rgb(0, 0, 39);
 }
@@ -27,6 +35,8 @@ header > h3 {
     margin-top: 15px;
 }
 
+/* Form */
+
 .formContainer {
     margin-top: 75px;
     position: absolute;
@@ -39,14 +49,6 @@ header > h3 {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-}
-
-.notVisible {
-    visibility: hidden;
-}
-
-.visible {
-    visibility: visible;
 }
 
 form[action="todo-list-form"] {
@@ -69,6 +71,8 @@ select {
     padding-right: 5px;
 }
 
+/* Sidebar */
+
 .sidebar {
     border: 1px solid white;
     border-radius: 10px;
@@ -85,6 +89,11 @@ select {
 
 }
 
+.addNewTask,
+.addNewCategory {
+    width: fit-content
+}
+
 .addNewTask:hover,
 .addNewCategory:hover {
     padding: 5px;
@@ -98,7 +107,8 @@ select {
 
 .sidebar > ul > li {
     margin-bottom: 25px;
-    color: rgb(179, 179, 179)
+    color: rgb(179, 179, 179);
+    width: fit-content;
 }
 
 .sidebar > ul > li:hover {
@@ -116,6 +126,22 @@ select {
 .addNewCategory > span {
     background-color: purple;
 }
+
+.formCategory{
+    position:absolute;
+    margin-top: 80px;
+}
+
+.formCategory,
+#addcategory{
+    width: 100px;
+    height: 20px;
+    
+}
+
+
+
+/* Todo Items */
 
 .todoItems {
     display: grid;

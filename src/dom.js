@@ -2,7 +2,7 @@
 let cardShell = [];
 const cardContainer = document.querySelector('.todoItems');
 
-function displayCard(point, title, date, category, description) {
+export function displayCard(point, title, date, category, description) {
     const allInputs = document.querySelectorAll('input');
     allInputs.forEach(singleInput => singleInput.value = '');
 
@@ -66,7 +66,6 @@ function displayCard(point, title, date, category, description) {
         cardShell[i].append(cardTop, cardChecklist, cardAddChecklist, cardBottom);
         console.log(cardShell[i]);
         cardContainer.appendChild(cardShell[i]);
-        console.log("lol");
     }
     
     //return {cardChecklist}
@@ -76,4 +75,9 @@ function newChecklistDisplay(cardChecklist) {
 
 }
 
-export {displayCard};
+export function updateCategorySelect() {
+    const selectCategories = document.querySelector('#category');
+    const newCategory = document.createElement('option');
+    newCategory.value = document.getElementById('addcategory').value;
+    selectCategories.appendChild(newCategory);
+}
