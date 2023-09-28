@@ -16,14 +16,12 @@
                 <label for="description"></label>
                 <textarea id="description" name="task_description" placeholder="Description"></textarea>
                 <label for="category"></label>
-                <select name="categories" id="category" placeholder="categories"></select>
+                <select name="categories" id="category"></select>
             </div>
 
             <div>
-                <label for="due">
-                    Due Date:
-                    <input type="date" id="due" name="due_date"/>
-                </label>
+                <label for="due">Due Date:</label>
+                <input type="date" id="due" name="due_date"/>
 
                 <div>
                     <label for="priority">
@@ -53,10 +51,16 @@
             <div class="addNewCategory">New Category <span>+</span>
             </div>
             <div class="formCategory notVisible">
-                <form action="addCategory" method="post" >
+                 <form action="addCategory" method="post">
                     <label for="addcategory">
-                        <input type="text" id="addcategory" name="Category" placeholder="Add Category"/><br>
+                        Add Category:
+                        <input type="text" id="addcategory" name="Category" placeholder="New Project" maxlength="12"/><br>
                     </label>
+                    <label for="removecategory">
+                        Delete Category:
+                        <select name="deletedcategories" id="removecategory"></select><br>
+                    </label>
+                    <button>Apply</button>
                 </form>
             </div>
             

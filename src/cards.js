@@ -11,11 +11,14 @@ class Card {
         this.description = description;
     }
 
-    /*addChecklistItem(){
-
+    addChecklistItem(i){
+        document.querySelector(".addNewChecklistItem > button").addEventListener('click', () => {
+            const addCheck = document.createElement("input[type = 'text']");
+        });
+        
     }
 
-    completeTask() {
+    /*completeTask() {
 
     }
     */
@@ -35,6 +38,7 @@ export function cardInfo() {
     for(let i = cardArray.length; i < cardArray.length + 1; i++){
         cards[i] = new Card(cardTitle, cardDate, cardCategory, cardDescription);
         displayCard(i, cardTitle, cardDate, cardCategory, cardDescription);
+        Card.addChecklistItem(i);
     }
 
     cardArray.push(cards[cards.length - 1]);

@@ -43,7 +43,7 @@ export function displayCard(point, title, date, category, description) {
 
 
     
-    //card button for creating a nwe checklist item
+    //card button for creating a new checklist item
         const cardAddChecklist = document.createElement("div");
         cardAddChecklist.classList.add('addNewChecklistItem');
     
@@ -68,7 +68,7 @@ export function displayCard(point, title, date, category, description) {
         cardContainer.appendChild(cardShell[i]);
     }
     
-    //return {cardChecklist}
+    return {cardChecklist}
 }
 
 function newChecklistDisplay(cardChecklist) {
@@ -77,7 +77,20 @@ function newChecklistDisplay(cardChecklist) {
 
 export function updateCategorySelect() {
     const selectCategories = document.querySelector('#category');
+    const removeCategories = document.querySelector('#removecategory');
     const newCategory = document.createElement('option');
+
     newCategory.value = document.getElementById('addcategory').value;
     selectCategories.appendChild(newCategory);
+    removeCategories.appendChild(newCategory.cloneNode());
+
+    /*if (newCategory.value === ''){
+        return
+    } else {
+        newCategory.value = document.getElementById('addcategory').value;
+        selectCategories.appendChild(newCategory);
+        removeCategories.appendChild(newCategory);
+    }
+    */
+   
 }
