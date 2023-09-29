@@ -1,4 +1,4 @@
-import { displayCard, newChecklistDisplay } from "./dom";
+import { displayCard, newChecklistDisplay, doneButtonScript } from "./dom";
 
 let cardArray = [];
 let cards = [];
@@ -15,10 +15,10 @@ class Card {
         newChecklistDisplay(i)
     }
 
-    /*completeTask() {
-
+    completeTask(i) {
+        doneButtonScript(i);
     }
-    */
+
 }
 
 export function cardInfo() {
@@ -36,6 +36,7 @@ export function cardInfo() {
         cards[i] = new Card(cardTitle, cardDate, cardCategory, cardDescription);
         displayCard(i, cardTitle, cardDate, cardCategory, cardDescription);
         cards[i].addChecklistItem(i);
+        cards[i].completeTask(i);
     }
 
     cardArray.push(cards[cards.length - 1]);
@@ -46,4 +47,9 @@ function priorityValue() {
     if (priorityCheck.checked){
         //going to change card color
     }
+}
+
+export function deleteArrayItems(i) {
+    cardArray.splice(i, 1);
+    cards.splice(i, 1);
 }

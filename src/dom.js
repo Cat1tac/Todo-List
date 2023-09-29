@@ -1,5 +1,12 @@
+import {deleteArrayItems} from "./cards";
+
+
+//When the delete button is pressed, the button is trying to remove the index number it was 
+//initially given even when it has moved from that point. 
+//Need to figure out how to update its position
 
 let cardShell = [];
+
 const cardContainer = document.querySelector('.todoItems');
 
 export function displayCard(point, title, date, category, description) {
@@ -38,11 +45,6 @@ export function displayCard(point, title, date, category, description) {
         const cardChecklist = document.createElement("div");
         cardChecklist.classList.add('checklistItemDisplay');
     
-        //will add the check lists in a different function
-        //will need to make an array
-
-
-    
     //card button for creating a new checklist item
         const cardAddChecklist = document.createElement("div");
         cardAddChecklist.classList.add('addNewChecklistItem');
@@ -57,39 +59,40 @@ export function displayCard(point, title, date, category, description) {
         cardBottom.classList.add('bottomItemArea');
     
         const cardComplete = document.createElement('button');
-        cardComplete.textContent = "Done";
-        //will need to make an array
+        cardComplete.textContent = "Complete" + point;
         
         cardBottom.appendChild(cardComplete);
         ///////////////////////////////////////////////
     
         cardShell[i].append(cardTop, cardChecklist, cardAddChecklist, cardBottom);
-        console.log(cardShell[i]);
         cardContainer.appendChild(cardShell[i]);
     }
-    
-    //return {cardAddChecklist}
 }
 
 export function newChecklistDisplay(i) {
     cardShell[i].children.item(2).firstChild.addEventListener('click', ()=> {
-        console.log('WOrks');
         const newItemtext = prompt("Enter new checklist item");
-        console.log(newItemtext);
 
         const newCheckboxLabel = document.createElement('label');
-        newCheckboxLabel.htmlFor = "domBox";
+        newCheckboxLabel.htmlFor = newItemtext + "- domBox";
         newCheckboxLabel.textContent = newItemtext + ": ";
 
         const newCheckBox = document.createElement('input');
         newCheckBox.type = 'checkbox';
-        newCheckBox.id = "domBox";
+        newCheckBox.id = newItemtext + "- domBox";
 
         newCheckboxLabel.appendChild(newCheckBox);
         
 
         cardShell[i].children.item(1).appendChild(newCheckboxLabel);
         //const addCheck = document.createElement("input[type = 'text']");
+    });
+}
+
+export function doneButtonScript(i) {
+    cardShell[i].children.item(3).firstChild.addEventListener('click', () => {
+        cardContainer.removeChild(cardShell[i]);
+        deleteArrayItems(i);
     });
 }
 
