@@ -211,6 +211,8 @@ select {
 .checklistItemDisplay {
     width: 100%;
     padding-left: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .addNewChecklistItem {

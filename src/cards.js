@@ -1,4 +1,4 @@
-import { displayCard } from "./dom";
+import { displayCard, newChecklistDisplay } from "./dom";
 
 let cardArray = [];
 let cards = [];
@@ -12,10 +12,7 @@ class Card {
     }
 
     addChecklistItem(i){
-        document.querySelector(".addNewChecklistItem > button").addEventListener('click', () => {
-            const addCheck = document.createElement("input[type = 'text']");
-        });
-        
+        newChecklistDisplay(i)
     }
 
     /*completeTask() {
@@ -38,7 +35,7 @@ export function cardInfo() {
     for(let i = cardArray.length; i < cardArray.length + 1; i++){
         cards[i] = new Card(cardTitle, cardDate, cardCategory, cardDescription);
         displayCard(i, cardTitle, cardDate, cardCategory, cardDescription);
-        Card.addChecklistItem(i);
+        cards[i].addChecklistItem(i);
     }
 
     cardArray.push(cards[cards.length - 1]);

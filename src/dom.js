@@ -68,11 +68,29 @@ export function displayCard(point, title, date, category, description) {
         cardContainer.appendChild(cardShell[i]);
     }
     
-    return {cardChecklist}
+    //return {cardAddChecklist}
 }
 
-function newChecklistDisplay(cardChecklist) {
+export function newChecklistDisplay(i) {
+    cardShell[i].children.item(2).firstChild.addEventListener('click', ()=> {
+        console.log('WOrks');
+        const newItemtext = prompt("Enter new checklist item");
+        console.log(newItemtext);
 
+        const newCheckboxLabel = document.createElement('label');
+        newCheckboxLabel.htmlFor = "domBox";
+        newCheckboxLabel.textContent = newItemtext + ": ";
+
+        const newCheckBox = document.createElement('input');
+        newCheckBox.type = 'checkbox';
+        newCheckBox.id = "domBox";
+
+        newCheckboxLabel.appendChild(newCheckBox);
+        
+
+        cardShell[i].children.item(1).appendChild(newCheckboxLabel);
+        //const addCheck = document.createElement("input[type = 'text']");
+    });
 }
 
 export function updateCategorySelect() {
