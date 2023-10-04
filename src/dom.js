@@ -104,14 +104,24 @@ export function updateCategorySelect() {
     const selectCategories = document.querySelector('#category');
     const removeCategories = document.querySelector('#removecategory');
     const newCategory = document.createElement('option');
+    const newSidebarCategory = document.createElement('li');
+    const ulCategories = document.querySelector(".addCategories")
+    
     
     if (document.getElementById('addcategory').value === ''){
         return
     } else {
         newCategory.textContent = document.getElementById('addcategory').value;
+
+        newSidebarCategory.textContent = document.getElementById('addcategory').value;
+        ulCategories.appendChild(newSidebarCategory);
+
         selectCategories.appendChild(newCategory);
         removeCategories.appendChild(newCategory.cloneNode(true));
+
         document.getElementById('addcategory').value = '';
         removeCategories.value = "";
     }
+
+
 }
