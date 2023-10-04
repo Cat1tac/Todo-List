@@ -54,4 +54,9 @@ function formCategory() {
 
 
 
-//Add clear to all forms, fix spacnig issue for newly created items, add ability to add checklists to items, generally make everything look better
+/*
+Things t0 work on:
+- Make priority button work
+- Make the rest of the side buttons work and add svgs to them
+- Make it so the new categories get added to the side menu and can actually sort the todos
+*/

@@ -10,14 +10,17 @@ let cardShell = [];
 const cardContainer = document.querySelector('.todoItems');
 
 export function displayCard(point, title, date, category, description) {
-    const allInputs = document.querySelectorAll('input');
-    allInputs.forEach(singleInput => singleInput.value = '');
-
-
+    const titleinput = document.querySelector("input[type='text']");
+    titleinput.value = ''; 
+    const textarea = document.querySelector("#description");
+    textarea.value = '';
+    const dateInput = document.querySelector("input[type='date']");
+    dateInput.value = '';
 
     for (let i = point; i < point + 1; i++){
         cardShell[i] = document.createElement("div");
         cardShell[i].classList.add('item'); 
+        cardShell[i].id = '' + i;
 
     //tophalf of card, 3 children
         const cardTop = document.createElement("div");
@@ -91,8 +94,9 @@ export function newChecklistDisplay(i) {
 
 export function doneButtonScript(i) {
     cardShell[i].children.item(3).firstChild.addEventListener('click', () => {
-        cardContainer.removeChild(cardShell[i]);
         deleteArrayItems(i);
+        const cardID = document.getElementById(i);
+        cardID.remove();
     });
 }
 
@@ -100,18 +104,14 @@ export function updateCategorySelect() {
     const selectCategories = document.querySelector('#category');
     const removeCategories = document.querySelector('#removecategory');
     const newCategory = document.createElement('option');
-
-    newCategory.value = document.getElementById('addcategory').value;
-    selectCategories.appendChild(newCategory);
-    removeCategories.appendChild(newCategory.cloneNode());
-
-    /*if (newCategory.value === ''){
+    
+    if (document.getElementById('addcategory').value === ''){
         return
     } else {
-        newCategory.value = document.getElementById('addcategory').value;
+        newCategory.textContent = document.getElementById('addcategory').value;
         selectCategories.appendChild(newCategory);
-        removeCategories.appendChild(newCategory);
+        removeCategories.appendChild(newCategory.cloneNode(true));
+        document.getElementById('addcategory').value = '';
+        removeCategories.value = "";
     }
-    */
-   
 }
