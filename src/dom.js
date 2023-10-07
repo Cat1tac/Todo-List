@@ -108,17 +108,19 @@ export function updateCategorySelect() {
     } else {
         newCategory.textContent = document.getElementById('addcategory').value;
 
+        //added to sidebar
         newSidebarCategory.textContent = document.getElementById('addcategory').value;
+        newSidebarCategory.addEventListener('click', categoryClick());
         ulCategories.appendChild(newSidebarCategory);
 
+        //added to select
         selectCategories.appendChild(newCategory);
         removeCategories.appendChild(newCategory.cloneNode(true));
 
+        //resetting input fields
         document.getElementById('addcategory').value = '';
         removeCategories.value = "";
     }
-
-
 }
 
 //Sidebar functionality
@@ -223,6 +225,24 @@ function nodate() {
             const cardDay = item.children.item(0).children.item(1).children.item(1).textContent;
             console.log(cardDay);
             if (cardDay !== '') {
+                item.classList.add("hide");
+            }
+        });
+    }
+}
+
+//Category functtionality
+
+function categoryClick(){
+    return function(event) {
+        items = document.querySelectorAll(".item");
+        const clickedCategory = event.target.textContent;
+        items.forEach( item => {
+            item.classList.remove("hide");
+            
+            const cardCategory = item.children.item(0).children.item(0).textContent;
+             
+            if(clickedCategory !== cardCategory){
                 item.classList.add("hide");
             }
         });
