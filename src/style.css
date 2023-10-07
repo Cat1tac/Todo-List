@@ -281,3 +281,7 @@ select {
     position: absolute;
     visibility: hidden;
 }
+
+.priority {
+    background-color: #304b41;
+}

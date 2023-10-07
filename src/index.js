@@ -57,5 +57,5 @@ function formCategory() {
 /*
 Things t0 work on:
 - Make priority button work
-- Make it so the new categories can actually sort the todos
+- Highlight the sidebar button that is clicked
 */

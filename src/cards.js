@@ -35,7 +35,7 @@ export function cardInfo() {
     cardPriority = priorityValue();
     for(let i = cardArray.length; i < cardArray.length + 1; i++){
         cards[i] = new Card(cardTitle, cardDate, cardCategory, cardDescription, i);
-        displayCard(i, cardTitle, cardDate, cardCategory, cardDescription);
+        displayCard(i, cardTitle, cardDate, cardCategory, cardDescription, cardPriority);
         cards[i].addChecklistItem(i);
         cards[i].completeTask(i);
     }
@@ -46,7 +46,9 @@ export function cardInfo() {
 function priorityValue() {
     const priorityCheck = document.querySelector("input[type='checkbox']");
     if (priorityCheck.checked){
-        //going to change card color
+        return true;
+    } else {
+        return false;
     }
 }
 

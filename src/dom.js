@@ -4,7 +4,7 @@ let cardShell = [];
 
 const cardContainer = document.querySelector('.todoItems');
 
-export function displayCard(point, title, date, category, description) {
+export function displayCard(point, title, date, category, description, priority) {
     const titleinput = document.querySelector("input[type='text']");
     titleinput.value = ''; 
     const textarea = document.querySelector("#description");
@@ -16,6 +16,8 @@ export function displayCard(point, title, date, category, description) {
         cardShell[i] = document.createElement("div");
         cardShell[i].classList.add('item'); 
         cardShell[i].id = '' + i;
+
+        if (priority === true) cardShell[i].classList.add('priority'); 
 
     //tophalf of card, 3 children
         const cardTop = document.createElement("div");
@@ -100,11 +102,11 @@ export function updateCategorySelect() {
     const removeCategories = document.querySelector('#removecategory');
     const newCategory = document.createElement('option');
     const newSidebarCategory = document.createElement('li');
-    const ulCategories = document.querySelector(".addCategories")
+    const ulCategories = document.querySelector(".addCategories");
     
     
     if (document.getElementById('addcategory').value === ''){
-        return
+        //
     } else {
         newCategory.textContent = document.getElementById('addcategory').value;
 
@@ -119,7 +121,28 @@ export function updateCategorySelect() {
 
         //resetting input fields
         document.getElementById('addcategory').value = '';
-        removeCategories.value = "";
+
+        console.log(removeCategories.value);
+    }
+
+    if (removeCategories.value === ''){
+        console.log(removeCategories.value);
+        return
+    } else {
+        console.log(document.querySelector('#removecategory').value);
+        const deleteItem = removeCategories.value;
+//make it so that the sidebar elements also get removed
+        for(let i = 0; i < document.querySelector('#removecategory').children.length; i++){
+            console.log(removeCategories.children);
+            if (deleteItem === document.querySelector('#removecategory').children[i].value){
+                document.querySelector('#removecategory').children[i].remove();
+            }
+        }
+        for(let i = 0; i < document.querySelector('.addCategories').children.length; i++){
+            if (deleteItem === document.querySelector('.addCategories').children[i].textContent){
+                document.querySelector(".addCategories").children[i].remove();
+            }
+        }
     }
 }
 
