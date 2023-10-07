@@ -58,5 +58,5 @@ function formCategory() {
 Things t0 work on:
 - Make priority button work
 - Make the rest of the side buttons work and add svgs to them
-- Make it so the new categories get added to the side menu and can actually sort the todos
+- Make it so the new categories can actually sort the todos
 */

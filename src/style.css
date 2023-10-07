@@ -276,7 +276,7 @@ select {
     padding: 3px;
 }
 
-.indentifier {
+.hide {
     position: absolute;
     visibility: hidden;
 }
