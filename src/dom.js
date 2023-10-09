@@ -151,7 +151,8 @@ let items = document.querySelectorAll(".item");
 
 document.querySelector('#index').addEventListener("click", index());
 function index() {
-    return function() {
+    return function(event) {
+        highlight(event.target);
         items = document.querySelectorAll(".item");
         items.forEach( item => {
             item.classList.remove("hide");
@@ -161,11 +162,11 @@ function index() {
 
 document.querySelector("#today").addEventListener("click", today());
 function today() {
-    return function() {
+    return function(event) {
+        highlight(event.target);
         items = document.querySelectorAll(".item");
-        console.log(items);
         items.forEach( item => {
-            console.log(item)
+            item.classList.remove("hide");
             const cardDay = new Date(item.children.item(0).children.item(1).children.item(1).textContent.replace(/-/g,"/"));
             
             const userDay = new Date();
@@ -182,7 +183,8 @@ function today() {
 
 document.querySelector("#tomorrow").addEventListener("click", tomorrow());
 function tomorrow() {
-    return function() {
+    return function(event) {
+        highlight(event.target)
         items = document.querySelectorAll(".item");
         items.forEach( item => {
             item.classList.add("hide");
@@ -228,11 +230,12 @@ function tomorrow() {
 
 document.querySelector('#someday').addEventListener("click", someday());
 function someday() {
-    return function() {
+    return function(event) {
+        highlight(event.target);
         items = document.querySelectorAll(".item");
         items.forEach( item => {
+            item.classList.remove("hide");
             const cardDay = item.children.item(0).children.item(1).children.item(1).textContent;
-            console.log(cardDay);
             if (cardDay === '') {
                 item.classList.add("hide");
             }
@@ -242,11 +245,12 @@ function someday() {
 
 document.querySelector('#noDate').addEventListener("click", nodate());
 function nodate() {
-    return function() {
+    return function(event) {
+        highlight(event.target);
         items = document.querySelectorAll(".item");
         items.forEach( item => {
+            item.classList.remove("hide");
             const cardDay = item.children.item(0).children.item(1).children.item(1).textContent;
-            console.log(cardDay);
             if (cardDay !== '') {
                 item.classList.add("hide");
             }
@@ -258,6 +262,7 @@ function nodate() {
 
 function categoryClick(){
     return function(event) {
+        highlight(event.target)
         items = document.querySelectorAll(".item");
         const clickedCategory = event.target.textContent;
         items.forEach( item => {
@@ -270,4 +275,14 @@ function categoryClick(){
             }
         });
     }
+}
+
+function highlight(pressed) {
+    const timeCats = document.querySelector(".sortTime").children;
+    for(let i = 0; i < timeCats.length; i++){
+        timeCats[i].classList.remove("highlight");
+    }
+    
+    console.log(pressed);
+    pressed.classList.add("highlight");
 }

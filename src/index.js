@@ -56,6 +56,5 @@ function formCategory() {
 
 /*
 Things t0 work on:
-- Make priority button work
 - Highlight the sidebar button that is clicked
 */
