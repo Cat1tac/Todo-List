@@ -1,7 +1,7 @@
 import './style.css';
 import {cardInfo} from "./cards";
 import {updateCategorySelect} from './dom'
-//import displayCard from "./dom";
+import './sidebardom';
 
 
 taskform();

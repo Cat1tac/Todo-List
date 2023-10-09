@@ -61,6 +61,4 @@ export function deleteArrayItems(i) {
 
     cardArray.splice(i, 1);
     cards.splice(i, 1);
-
-    console.log(cards);
 }

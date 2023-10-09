@@ -29,8 +29,7 @@ font-variation-settings:
     color: rgb(255, 255, 255);
     background-color: #183D3D;
     width: 210px; 
-    padding: 5px;
-    box-sizing: unset;
+    padding-left: 1px;
 }
 
 * {
@@ -185,11 +184,16 @@ select {
 
 .formCategory{
     position: absolute;
-    margin-top: 80px;
+    margin-top: 86px;
     border: 1px solid white;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
+    width: 317px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .formCategory > * {
