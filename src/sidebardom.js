@@ -1,6 +1,5 @@
 //Sidebar functionality
-console.log("res");
-let items = document.querySelectorAll(".item");
+const items = document.querySelectorAll(".item");
 highlight(document.querySelector('#index'));
 
 
@@ -138,6 +137,5 @@ function highlight(pressed) {
         timeCats[i].classList.remove("highlight");
     }
     
-    console.log(pressed);
     pressed.classList.add("highlight");
 }

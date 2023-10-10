@@ -21,10 +21,6 @@ font-variation-settings:
     visibility: hidden;
 }
 
-.priority {
-    background-color: #304b41;
-}
-
 .highlight {
     color: rgb(255, 255, 255);
     background-color: #183D3D;
@@ -223,7 +219,7 @@ select {
     display: grid;
     grid-template-columns: repeat(auto-fill, 321px);
     margin: 5px;
-    gap: 10px;
+    gap: 15px;
     
 }
 
@@ -240,10 +236,6 @@ select {
     align-items: center;
     box-shadow: 3px 3px #93B1A6;
 
-}
-
-.priorityChecked {
-    background-color: black;
 }
 
 .topItemArea {
@@ -296,3 +288,6 @@ select {
     padding: 3px;
 }
 
+.priority {
+    background-color: #304b41;
+}

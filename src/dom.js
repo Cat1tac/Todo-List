@@ -1,10 +1,10 @@
-import {deleteArrayItems} from "./cards";
+//import { serializeChecklist } from "./localStorage";
 
-let cardShell = [];
+export let cardShell = [];
 
 const cardContainer = document.querySelector('.todoItems');
 
-export function displayCard(point, title, date, category, description, priority) {
+export function displayCard(point, identification, title, date, category, description, priority) {
     const titleinput = document.querySelector("input[type='text']");
     titleinput.value = ''; 
     const textarea = document.querySelector("#description");
@@ -15,7 +15,7 @@ export function displayCard(point, title, date, category, description, priority)
     for (let i = point; i < point + 1; i++){
         cardShell[i] = document.createElement("div");
         cardShell[i].classList.add('item'); 
-        cardShell[i].id = '' + i;
+        cardShell[i].id = '' + identification;
 
         if (priority === true) cardShell[i].classList.add('priority'); 
 
@@ -68,11 +68,14 @@ export function displayCard(point, title, date, category, description, priority)
     
         cardShell[i].append(cardTop, cardChecklist, cardAddChecklist, cardBottom);
         cardContainer.appendChild(cardShell[i]);
+        
     }
 }
 
 export function newChecklistDisplay(i) {
-    cardShell[i].children.item(2).firstChild.addEventListener('click', ()=> {
+    console.log(i);
+    const cardID = document.getElementById(i);
+    cardID.children.item(2).firstChild.addEventListener('click', ()=> {
         const newItemtext = prompt("Enter new checklist item");
 
         const newCheckboxLabel = document.createElement('label');
@@ -86,17 +89,10 @@ export function newChecklistDisplay(i) {
         newCheckBox.appendChild(newCheckboxLabel);
         
 
-        cardShell[i].children.item(1).firstChild.appendChild(newCheckBox);
-        cardShell[i].children.item(1).firstChild.appendChild(newCheckboxLabel);
-        //const addCheck = document.createElement("input[type = 'text']");
-    });
-}
-
-export function doneButtonScript(i) {
-    cardShell[i].children.item(3).firstChild.addEventListener('click', () => {
-        deleteArrayItems(i);
-        const cardID = document.getElementById(i);
-        cardID.remove();
+        cardID.children.item(1).firstChild.appendChild(newCheckBox);
+        cardID.children.item(1).firstChild.appendChild(newCheckboxLabel);
+        
+        serializeChecklist(cardID.id, newItemtext);
     });
 }
 
