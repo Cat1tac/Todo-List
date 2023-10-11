@@ -1,11 +1,18 @@
-import { displayCard } from "./dom";
+import { displayCard, displayStoredChecklists } from "./dom";
 
 export let card_List = [];
-let listItemArray = [];
+export let storedLists = [];
+function CheckListStore(id) {
+    this.cardid = id,
+    this.cardListArray = [],
+    this.checked = []
+}
+
 export const card_deserializeList = JSON.parse(localStorage.getItem("domCards"));
+const storedlist_deserialize = JSON.parse(localStorage.getItem("checklist"));
 
-
-deserialize();
+deserializecards();
+deserializeChecklist()
 
 export function serializeCard(card) {
     if(card === undefined){
@@ -19,20 +26,45 @@ export function serializeCard(card) {
     }
     
 }
-//whe a new check is created, the program should find the cardid it was created on then append it to the list of cardItems
+
 export function serializeChecklist(id, listItem){
-    const checkListStore = {
-        cardid: id,
-        cardListItem: function () {
-            listItemArray.push(listItem);
-            return listItemArray;
+    if (id === undefined){
+        const StoredList_serialized = JSON.stringify(storedLists);
+        localStorage.setItem("checklist", StoredList_serialized);
+    } else {
+
+        if(storedLists.some(e => e.cardid === id)){
+            const index = storedLists.findIndex(e => e.cardid === id);
+            storedLists[index].cardListArray.push(listItem);
+        } else {
+            const newStoredList = new CheckListStore(id);
+            newStoredList.cardListArray.push(listItem);
+            newStoredList.checked.push(false);
+            storedLists.push(newStoredList);
+            
         }
+        
+        const StoredList_serialized = JSON.stringify(storedLists);
+        localStorage.setItem("checklist", StoredList_serialized);
     }
-    console.log(checkListStore);
     
 }
 
-function deserialize() {
+export function serializeCheck(id, listItem, check){
+   
+    const cardindex = storedLists.findIndex(e => e.cardid === id);
+    
+    const listItemIndex = storedLists[cardindex].cardListArray.findIndex(e => e === listItem);
+    
+    
+    storedLists[cardindex].checked[listItemIndex] = check;
+    
+
+    const StoredList_serialized = JSON.stringify(storedLists);
+    localStorage.setItem("checklist", StoredList_serialized);
+}
+
+function deserializecards() {
     
     if(card_deserializeList !== null){
         for(let i = 0; i < card_deserializeList.length; i++){
@@ -41,5 +73,16 @@ function deserialize() {
         }
     }
 
+}
+
+function deserializeChecklist() {
+    if(storedlist_deserialize !== null){
+        for(let i = 0; i < storedlist_deserialize.length; i++){
+            storedLists.push(storedlist_deserialize[i]);
+            for(let r = 0; r < storedlist_deserialize[i].cardListArray.length; r++){
+                displayStoredChecklists(storedlist_deserialize[i].cardid, storedlist_deserialize[i].cardListArray[r], storedlist_deserialize[i].checked[r]);
+            }
+        }
+    }
 }
 

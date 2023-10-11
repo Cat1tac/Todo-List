@@ -1,5 +1,5 @@
-import { displayCard, newChecklistDisplay } from "./dom";
-import { serializeCard, card_deserializeList, card_List } from "./localStorage";
+import { displayCard } from "./dom";
+import { serializeCard, card_deserializeList, card_List, serializeChecklist, storedLists, serializeCheck } from "./localStorage";
 
 let cardArray = [];
 let cards = [];
@@ -15,13 +15,34 @@ export class Card {
     }
 
     addChecklistItem(i){
-        newChecklistDisplay(i)
+        const cardID = document.getElementById(i);
+        cardID.children.item(2).firstChild.addEventListener('click', ()=> {
+            const newItemtext = prompt("Enter new checklist item");
+
+            const newCheckboxLabel = document.createElement('label');
+            newCheckboxLabel.htmlFor = newItemtext + "- domBox";
+            newCheckboxLabel.textContent = ": " + newItemtext;
+
+            const newCheckBox = document.createElement('input');
+            newCheckBox.type = 'checkbox';
+            newCheckBox.id = newItemtext + "- domBox";
+            newCheckBox.addEventListener('change', checkTheBox(cardID, newItemtext, newCheckBox));
+
+            newCheckBox.appendChild(newCheckboxLabel);
+
+            const cardChecklistdiv = document.createElement("div");
+
+            cardID.children.item(1).append(cardChecklistdiv);
+            cardID.children.item(1).lastChild.appendChild(newCheckBox);
+            cardID.children.item(1).lastChild.appendChild(newCheckboxLabel);
+        
+            serializeChecklist(cardID.id, newItemtext);
+        });
     }
 
     completeTask(i) {
         const cardID = document.getElementById(i);
-        console.log(cardID);
-        console.log(cardID.children);
+        
         cardID.children.item(3).firstChild.addEventListener('click', () => {
             console.log(i);
             console.log(cardID);
@@ -31,11 +52,13 @@ export class Card {
                     console.log(card_List[r].identifier);
                     console.log(card_List[r]);
                     card_List.splice(r, 1);
+                    storedLists.splice(r, 1);
                     deleteArrayItems(r);
                 }
             }
             
             serializeCard(undefined);
+            serializeChecklist(undefined, undefined);
 
             cardID.remove();
         });
@@ -50,7 +73,6 @@ if(card_deserializeList !== null){
         card_deserializeList[i].addChecklistItem(parseInt(card_deserializeList[i].identifier));
         card_deserializeList[i].completeTask(parseInt(card_deserializeList[i].identifier));
 
-        console.log(card_deserializeList[i]);
         cards.push(card_deserializeList[i]); 
         cardArray.push(i);
     }
@@ -94,4 +116,23 @@ export function deleteArrayItems(i) {
     cards.splice(i, 1);
     console.log(cards);
     cardArray.splice(i, 1);
+}
+
+export function checkTheBox(id, listitem, newCheckBox) {
+    return function() {
+        console.log(newCheckBox.checked);
+        serializeCheck(id.id, listitem, newCheckBox.checked);
+        /*
+        if(newCheckBox.checked == false){
+            newCheckBox.value = true;
+            console.log(newCheckBox.value);
+            serializeCheck(id.id, listitem, newCheckBox.checked);
+        } else {
+            console.log("lol");
+            newCheckBox.value = false;
+            serializeCheck(id.id, listitem, newCheckBox.);
+        }
+        */
+    }
+    
 }

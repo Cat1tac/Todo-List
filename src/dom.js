@@ -1,6 +1,6 @@
-//import { serializeChecklist } from "./localStorage";
+import { checkTheBox } from "./cards";
 
-export let cardShell = [];
+let cardShell = [];
 
 const cardContainer = document.querySelector('.todoItems');
 
@@ -44,8 +44,6 @@ export function displayCard(point, identification, title, date, category, descri
     //card checklist area
         const cardChecklist = document.createElement("div");
         cardChecklist.classList.add('checklistItemDisplay');
-        const cardChecklistdiv = document.createElement("div");
-        cardChecklist.append(cardChecklistdiv);
     
     //card button for creating a new checklist item
         const cardAddChecklist = document.createElement("div");
@@ -72,28 +70,28 @@ export function displayCard(point, identification, title, date, category, descri
     }
 }
 
-export function newChecklistDisplay(i) {
-    console.log(i);
+export function displayStoredChecklists(i, listItem, check) {
     const cardID = document.getElementById(i);
-    cardID.children.item(2).firstChild.addEventListener('click', ()=> {
-        const newItemtext = prompt("Enter new checklist item");
 
-        const newCheckboxLabel = document.createElement('label');
-        newCheckboxLabel.htmlFor = newItemtext + "- domBox";
-        newCheckboxLabel.textContent = ": " + newItemtext;
+    const newCheckboxLabel = document.createElement('label');
+    newCheckboxLabel.htmlFor = listItem + "- domBox";
+    newCheckboxLabel.textContent = ": " + listItem;
 
-        const newCheckBox = document.createElement('input');
-        newCheckBox.type = 'checkbox';
-        newCheckBox.id = newItemtext + "- domBox";
+    const newCheckBox = document.createElement('input');
+    newCheckBox.type = 'checkbox';
+    newCheckBox.id = listItem + "- domBox";
+    newCheckBox.value = check;
+    newCheckBox.checked = check;
+    newCheckBox.addEventListener('change', checkTheBox(cardID, listItem, newCheckBox));
 
-        newCheckBox.appendChild(newCheckboxLabel);
-        
 
-        cardID.children.item(1).firstChild.appendChild(newCheckBox);
-        cardID.children.item(1).firstChild.appendChild(newCheckboxLabel);
-        
-        serializeChecklist(cardID.id, newItemtext);
-    });
+    newCheckBox.appendChild(newCheckboxLabel);
+
+    const cardChecklistdiv = document.createElement("div");
+
+    cardID.children.item(1).append(cardChecklistdiv);
+    cardID.children.item(1).lastChild.appendChild(newCheckBox);
+    cardID.children.item(1).lastChild.appendChild(newCheckboxLabel);
 }
 
 export function updateCategorySelect() {
