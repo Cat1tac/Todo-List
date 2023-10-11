@@ -1,7 +1,6 @@
 import './style.css';
 import {cardInfo} from "./cards";
-import {updateCategorySelect} from './dom'
-import './sidebardom';
+import {updateCategorySelect} from './sidebardom';
 
 
 taskform();

@@ -1,6 +1,4 @@
 import { checkTheBox } from "./cards";
-import { categoryClick } from "./sidebardom";
-import { serializeCatagories, storedCategories } from "./localStorage";
 
 let cardShell = [];
 
@@ -96,74 +94,3 @@ export function displayStoredChecklists(i, listItem, check) {
     cardID.children.item(1).lastChild.appendChild(newCheckboxLabel);
 }
 
-export function updateCategorySelect() {
-    const selectCategories = document.querySelector('#category');
-    const removeCategories = document.querySelector('#removecategory');
-    const newCategory = document.createElement('option');
-    const newSidebarCategory = document.createElement('li');
-    const ulCategories = document.querySelector(".addCategories");
-    
-    
-    if (document.getElementById('addcategory').value === ''){
-        //
-    } else {
-        newCategory.textContent = document.getElementById('addcategory').value;
-
-        //added to sidebar
-        newSidebarCategory.textContent = document.getElementById('addcategory').value;
-        newSidebarCategory.addEventListener('click', categoryClick());
-        ulCategories.appendChild(newSidebarCategory);
-
-        //added to select
-        selectCategories.appendChild(newCategory);
-        removeCategories.appendChild(newCategory.cloneNode(true));
-
-        serializeCatagories(newCategory.textContent);
-
-        //resetting input fields
-        document.getElementById('addcategory').value = '';
-    }
-
-    if (removeCategories.value === ''){
-        return
-    } else {
-        console.log(document.querySelector('#removecategory').value);
-        const deleteItem = removeCategories.value;
-//make it so that the sidebar elements also get removed
-        for(let i = 0; i < document.querySelector('#removecategory').children.length; i++){
-            console.log(removeCategories.children);
-            if (deleteItem === document.querySelector('#removecategory').children[i].value){
-                document.querySelector('#removecategory').children[i].remove();
-            }
-        }
-        for(let i = 0; i < document.querySelector('.addCategories').children.length; i++){
-            if (deleteItem === document.querySelector('.addCategories').children[i].textContent){
-                document.querySelector(".addCategories").children[i].remove();
-            }
-        }
-
-        //Removing elements from local storage
-        const storedCategoryIndex = storedCategories.findIndex(e => e === deleteItem);
-        storedCategories.splice(storedCategoryIndex, 1);
-        serializeCatagories(undefined);
-    }
-}
-
-export function displayStoredCategories(category) {
-    const selectCategories = document.querySelector('#category');
-    const removeCategories = document.querySelector('#removecategory');
-    const newCategory = document.createElement('option');
-    const newSidebarCategory = document.createElement('li');
-    const ulCategories = document.querySelector(".addCategories");
-
-    newCategory.textContent = category;
-
-    //added to sidebar
-    newSidebarCategory.textContent = category;
-    newSidebarCategory.addEventListener('click', categoryClick());
-    ulCategories.appendChild(newSidebarCategory);
-
-    //added to select
-    selectCategories.appendChild(newCategory);
-    removeCategories.appendChild(newCategory.cloneNode(true));
-}

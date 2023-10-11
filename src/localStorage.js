@@ -1,4 +1,5 @@
-import { displayCard, displayStoredChecklists, displayStoredCategories } from "./dom";
+import { displayCard, displayStoredChecklists } from "./dom";
+import { displayStoredCategories } from "./sidebardom";
 
 export let card_List = [];
 export let storedCategories = [];
