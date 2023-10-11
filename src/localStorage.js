@@ -1,6 +1,7 @@
-import { displayCard, displayStoredChecklists } from "./dom";
+import { displayCard, displayStoredChecklists, displayStoredCategories } from "./dom";
 
 export let card_List = [];
+export let storedCategories = [];
 export let storedLists = [];
 function CheckListStore(id) {
     this.cardid = id,
@@ -9,10 +10,12 @@ function CheckListStore(id) {
 }
 
 export const card_deserializeList = JSON.parse(localStorage.getItem("domCards"));
+const categories_deserialze = JSON.parse(localStorage.getItem("categories"));
 const storedlist_deserialize = JSON.parse(localStorage.getItem("checklist"));
 
 deserializecards();
-deserializeChecklist()
+deserializeChecklist();
+deserializeCategories();
 
 export function serializeCard(card) {
     if(card === undefined){
@@ -64,6 +67,18 @@ export function serializeCheck(id, listItem, check){
     localStorage.setItem("checklist", StoredList_serialized);
 }
 
+export function serializeCatagories(category) {
+    if(category === undefined){
+        const categories_serializedList = JSON.stringify(storedCategories);
+        localStorage.setItem("categories", categories_serializedList);
+    } else {
+        storedCategories.push(category);
+        const categories_serializedList = JSON.stringify(storedCategories);
+
+        localStorage.setItem("categories", categories_serializedList);
+    }
+}
+
 function deserializecards() {
     
     if(card_deserializeList !== null){
@@ -82,6 +97,15 @@ function deserializeChecklist() {
             for(let r = 0; r < storedlist_deserialize[i].cardListArray.length; r++){
                 displayStoredChecklists(storedlist_deserialize[i].cardid, storedlist_deserialize[i].cardListArray[r], storedlist_deserialize[i].checked[r]);
             }
+        }
+    }
+}
+
+function deserializeCategories() {
+    if (categories_deserialze !== null){
+        for(let i = 0; i < categories_deserialze.length; i++){
+            storedCategories.push(categories_deserialze[i]);
+            displayStoredCategories(categories_deserialze[i]);
         }
     }
 }

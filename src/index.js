@@ -24,18 +24,6 @@ function taskform() {
     });
 }
 
-//window.onclick = closeForms;
-
-function closeForms() {
-    //currently does not work
-    const form = document.querySelector("div.formContainer");
-    const categoryForm = document.querySelector(".formCategory");
-    if(!form.classList.contains("notVisible") || !categoryForm.classList.contains('notVisible')){
-        categoryForm.classList.toggle('notVisible');
-        form.classList.toggle("notVisible");
-    }
-}
-
 function formCategory() {
     const newCategory = document.querySelector(".addNewCategory");
     const categoryForm = document.querySelector(".formCategory");
@@ -51,10 +39,3 @@ function formCategory() {
         categoryForm.classList.add('notVisible');
     });
 }
-
-
-
-/*
-Things t0 work on:
-- Highlight the sidebar button that is clicked
-*/

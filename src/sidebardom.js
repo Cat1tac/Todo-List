@@ -1,5 +1,5 @@
 //Sidebar functionality
-const items = document.querySelectorAll(".item");
+let items = document.querySelectorAll(".item");
 highlight(document.querySelector('#index'));
 
 
@@ -114,7 +114,7 @@ function nodate() {
 
 //Category functtionality
 
-function categoryClick(){
+export function categoryClick(){
     return function(event) {
         highlight(event.target)
         items = document.querySelectorAll(".item");

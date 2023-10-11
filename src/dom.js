@@ -1,4 +1,6 @@
 import { checkTheBox } from "./cards";
+import { categoryClick } from "./sidebardom";
+import { serializeCatagories, storedCategories } from "./localStorage";
 
 let cardShell = [];
 
@@ -116,14 +118,13 @@ export function updateCategorySelect() {
         selectCategories.appendChild(newCategory);
         removeCategories.appendChild(newCategory.cloneNode(true));
 
+        serializeCatagories(newCategory.textContent);
+
         //resetting input fields
         document.getElementById('addcategory').value = '';
-
-        console.log(removeCategories.value);
     }
 
     if (removeCategories.value === ''){
-        console.log(removeCategories.value);
         return
     } else {
         console.log(document.querySelector('#removecategory').value);
@@ -140,5 +141,29 @@ export function updateCategorySelect() {
                 document.querySelector(".addCategories").children[i].remove();
             }
         }
+
+        //Removing elements from local storage
+        const storedCategoryIndex = storedCategories.findIndex(e => e === deleteItem);
+        storedCategories.splice(storedCategoryIndex, 1);
+        serializeCatagories(undefined);
     }
+}
+
+export function displayStoredCategories(category) {
+    const selectCategories = document.querySelector('#category');
+    const removeCategories = document.querySelector('#removecategory');
+    const newCategory = document.createElement('option');
+    const newSidebarCategory = document.createElement('li');
+    const ulCategories = document.querySelector(".addCategories");
+
+    newCategory.textContent = category;
+
+    //added to sidebar
+    newSidebarCategory.textContent = category;
+    newSidebarCategory.addEventListener('click', categoryClick());
+    ulCategories.appendChild(newSidebarCategory);
+
+    //added to select
+    selectCategories.appendChild(newCategory);
+    removeCategories.appendChild(newCategory.cloneNode(true));
 }
